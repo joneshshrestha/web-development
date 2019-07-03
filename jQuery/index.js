@@ -1,1 +1,3 @@
-$('h1').addClass('big-heading')
+$("button").click(function() {
+    $("h1").slideUp().slideDown().animate({opacity: 0.5})
+})
