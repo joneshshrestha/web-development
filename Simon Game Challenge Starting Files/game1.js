@@ -4,6 +4,7 @@ let gamePattern = []
 let userClickedPattern = []
 
 let level = 0
+let started = false
 
 function nextSequence() {
     userClickedPattern = []
@@ -40,9 +41,17 @@ function animatePress(currentColor) {
 }
 
 // Detect keyboard key press only for the first time
-$(document).one("keypress", function () {
-    nextSequence()
-})
+// $(document).one("keypress", function () {
+//     nextSequence()
+// })
+
+$(document).keypress(function() {
+    if (!started) {
+      $("#level-title").text("Level " + level)
+      nextSequence()
+      started = true
+    }
+  })
 
 function checkAnswer(currentLevel) {
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
@@ -60,6 +69,7 @@ function checkAnswer(currentLevel) {
             $("body").removeClass("game-over")
         }, 200)
         $("h1").text("Game Over, Press Any Key to Restart")
+        startOver()
     }
 }
 
@@ -78,3 +88,9 @@ function checkAnswer(currentLevel) {
 //         return 0
 //     }
 // }
+
+function startOver() {
+    level = 0
+    gamePattern = []
+    started = false
+}
