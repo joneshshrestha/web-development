@@ -1,3 +1,4 @@
-const fs = require('fs')
+let superheroes = require("superheroes")
 
-fs.copyFileSync("text1.txt", "text2.txt")
+let mySuperheroName = superheroes.random()
+ console.log(mySuperheroName)
