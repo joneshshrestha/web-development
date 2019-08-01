@@ -13,10 +13,11 @@ app.get("/bmicalculator", function(req, res){
 })
 
 app.post("/bmicalculator", function(req, res){
-    let weight = parseFloat(req.body.weight)
-    let height = parseFloat(req.body.height)
+    console.log(req.body)
+    let weight = Number(req.body.weight)
+    let height = Number(req.body.height)
 
-    let bmi = weight / (height * height)
+    let bmi = (weight / (height * height))
     res.send("Your BMI is " + bmi)
 })
 
