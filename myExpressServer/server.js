@@ -14,6 +14,10 @@ app.get("/about", function(req, res){
     res.send("My name is Jonesh Shrestha. Undergraduate at Kathmandu University")
 })
 
+app.get("/hobby", function(req, res) {
+    res.send("Coffee Code & Beer")
+})
+
 app.listen(3000, function(){
     console.log("Server started at port 3000")
 })
