@@ -1,0 +1,18 @@
+{
+  "name": "api-bitcointicker",
+  "version": "1.0.0",
+  "description": "Bitcoin Ticker using API",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "Bitcoin"
+  ],
+  "author": "Jonesh Shrestha",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
