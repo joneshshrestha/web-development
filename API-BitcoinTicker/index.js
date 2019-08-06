@@ -14,9 +14,13 @@ app.get("/", function(req, res){
 
 app.post("/", function(req, res){
     // console.log(req.body.crypto)
-
-    request("https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD", function(error, response, body){
-        console.log(body)
+    let crypto = req.body.crypto
+    let fiat = req.body.fiat
+    request("https://apiv2.bitcoinaverage.com/indices/global/ticker/" + crypto + fiat, function(error, response, body){
+        let data = JSON.parse(body)
+        let price = data.last
+        console.log(price)
+        res.send("<h1> The current price of "+ crypto + " is " + price + " " + fiat + " <h1>")
     })
 
 })
