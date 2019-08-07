@@ -16,7 +16,16 @@ app.post("/", function(req, res){
     // console.log(req.body.crypto)
     let crypto = req.body.crypto
     let fiat = req.body.fiat
-    request("https://apiv2.bitcoinaverage.com/indices/global/ticker/" + crypto + fiat, function(error, response, body){
+
+    let baseURL = "https://apiv2.bitcoinaverage.com/convert/global"
+    let finalURL = baseURL + crypto + fiat
+
+    let options = {
+        url: baseURL,
+
+    }
+
+    request(options, function(error, response, body){
         let data = JSON.parse(body)
         let price = data.last
         console.log(price)
