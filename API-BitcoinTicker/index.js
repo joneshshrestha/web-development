@@ -37,7 +37,7 @@ app.post("/", function(req, res){
         let currentDate = data.time
 
         res.write("<p> The current date is " + currentDate + "</p>")
-        res.write("<h1>"+ amount + " " + crypto + " is currently worth " + price + " " + fiat + " <h1>")
+        res.write("<h1 align='center' style='margin:330px 500px;'>"+ amount + " " + crypto + " is currently worth " + price + " " + fiat + " <h1>")
         res.send()
     })
 
