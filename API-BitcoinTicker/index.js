@@ -20,7 +20,12 @@ app.post("/", function(req, res){
         let data = JSON.parse(body)
         let price = data.last
         console.log(price)
-        res.send("<h1> The current price of "+ crypto + " is " + price + " " + fiat + " <h1>")
+
+        let currentDate = data.display_timestamp
+
+        res.write("<p> The current date is " + currentDate + "</p>")
+        res.write("<h1> The current price of "+ crypto + " is " + price + " " + fiat + " <h1>")
+        res.send()
     })
 
 })
