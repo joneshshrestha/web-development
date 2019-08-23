@@ -9,10 +9,13 @@ app.set('view engine', 'ejs')
 app.get('/', function(req, res){
     const today = new Date()
     const currentday = today.getDay()
+    const day =''
+
     if(currentday === 6 || currentday === 0) {
-        res.write('<h1> Yay! Its the weekend </h1>')
+        day = 'Weekend'
+        res.render('list', {kindOfDay: day})
     } else {
-        res.sendFile(__dirname + '/index.html')
+        day = 'Weekday'
     }
 })
 
