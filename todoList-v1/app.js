@@ -7,10 +7,11 @@ const app = express()
 
 app.get('/', function(req, res){
     const today = new Date()
-    if(today.getDay() == 6 || today.getDay() == 0) {
-        res.send('Yay! Its the weekend')
+    const currentday = today.getDay()
+    if(currentday === 6 || currentday === 0) {
+        res.write('<h1> Yay! Its the weekend </h1>')
     } else {
-        res.send('Boo! I have to work!')
+        res.sendFile(__dirname + '/index.html')
     }
 })
 
