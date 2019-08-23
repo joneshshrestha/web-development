@@ -7,16 +7,19 @@ const app = express()
 app.set('view engine', 'ejs')
 
 app.get('/', function(req, res){
-    const today = new Date()
-    const currentday = today.getDay()
-    const day =''
+    let today = new Date()
+    let currentday = today.getDay()
+    let daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    let day =''
 
     if(currentday === 6 || currentday === 0) {
-        day = 'Weekend'
-        res.render('list', {kindOfDay: day})
+        day = daysOfWeek[currentday]
     } else {
-        day = 'Weekday'
+        day = daysOfWeek[currentday]
     }
+
+    res.render('list', {kindOfDay: day})
+
 })
 
 app.listen(3000, function(){
