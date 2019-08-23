@@ -1,12 +1,19 @@
+//jshint esversion:6
+
 const express = require('express')
 const bodyParser = require('body-parser')
 
 const app = express()
 
 app.get('/', function(req, res){
-    res.send('Hello')
+    const today = new Date()
+    if(today.getDay() == 6 || today.getDay() == 0) {
+        res.send('Yay! Its the weekend')
+    } else {
+        res.send('Boo! I have to work!')
+    }
 })
 
 app.listen(3000, function(){
-    console.log('Listening at PORT 3000')
+    console.log('Server started on PORT 3000')
 })
