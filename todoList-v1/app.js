@@ -17,14 +17,13 @@ app.get('/', function(req, res){
     }
 
     let day = today.toLocaleDateString("en-US", options)
-    res.render('list', {kindOfDay: day})
+    res.render('list', {kindOfDay: day, newListItem: item})
 
 })
 
 app.post('/', function(req, res){
     let item = req.body.newItem
-    console.log(item)
-    res.render('list', {newListItem: item})
+    res.redirect('/')
 })
 app.listen(3000, function(){
     console.log('Server started on PORT 3000')
