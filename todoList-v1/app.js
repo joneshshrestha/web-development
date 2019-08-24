@@ -31,3 +31,5 @@ app.post('/', function(req, res){
 app.listen(3000, function(){
     console.log('Server started on PORT 3000')
 })
+
+//console.log('req.body.newItem')
