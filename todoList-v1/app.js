@@ -8,16 +8,13 @@ app.set('view engine', 'ejs')
 
 app.get('/', function(req, res){
     let today = new Date()
-    let currentday = today.getDay()
-    let daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    let day =''
-
-    if(currentday === 6 || currentday === 0) {
-        day = daysOfWeek[currentday]
-    } else {
-        day = daysOfWeek[currentday]
+    let options = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long'
     }
 
+    let day = today.toLocaleDateString("en-US", options)
     res.render('list', {kindOfDay: day})
 
 })
