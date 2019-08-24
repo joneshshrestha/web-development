@@ -22,7 +22,9 @@ app.get('/', function(req, res){
 })
 
 app.post('/', function(req, res){
-    console.log(req.body.newItem)
+    let item = req.body.newItem
+    console.log(item)
+    res.render('list', {newListItem: item})
 })
 app.listen(3000, function(){
     console.log('Server started on PORT 3000')
