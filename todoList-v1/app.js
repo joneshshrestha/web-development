@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const app = express()
 app.set('view engine', 'ejs')
 
+app.use(bodyParser.urlencoded({extended: true}))
+
 app.get('/', function(req, res){
     let today = new Date()
     let options = {
@@ -19,6 +21,9 @@ app.get('/', function(req, res){
 
 })
 
+app.post('/', function(req, res){
+    console.log(req.body.newItem)
+})
 app.listen(3000, function(){
     console.log('Server started on PORT 3000')
 })
