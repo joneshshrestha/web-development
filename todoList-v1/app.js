@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-let item = ''
+let items = []
 
 app.set('view engine', 'ejs')
 
@@ -20,16 +20,17 @@ app.get('/', function(req, res){
     }
 
     let day = today.toLocaleDateString("en-US", options)
-    res.render('list', {kindOfDay: day, newListItem: item})
+    res.render('list', {kindOfDay: day, newListItem: items})
 
 })
 
 app.post('/', function(req, res){
-    item = req.body.newItem
+    let item = req.body.newItem
+    items.push(item)
+    
     res.redirect('/')
 })
+
 app.listen(3000, function(){
     console.log('Server started on PORT 3000')
 })
-
-//console.log('req.body.newItem')
