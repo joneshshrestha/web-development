@@ -7,13 +7,17 @@
     <title>To Do List</title>
 </head>
 <body>
-    <h1> <%= kindOfDay %> </h1>
+    <div class="box" id="heading">
+        <h1> <%= kindOfDay %> </h1>
+    </div>
 
-    <ul>
+    <div class="box" id="">
         <% for (let i=0; i<newListItems.length; i++) { %>
-            <li><%= newListItems[i] %></li>
+        <div class="item">
+            <input type="checklist">
+            <p><%= newListItems[i] %></p>
         <% } %>     
-    </ul>
+    </div>
 
     <form method='POST' action='/'>
         <input type='text' name='newItem'>
