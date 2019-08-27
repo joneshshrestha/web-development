@@ -28,9 +28,14 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
     let item = req.body.newItem
-    items.push(item)
 
-    res.redirect('/')
+    if (req.body.item === 'work') {
+        workItems.push(item)
+        res.redirect('/work')
+    } else {
+        workItems.push(item)
+        res.redirect('/')
+    }
 })
 
 app.get('/work', function(req, res){
@@ -38,9 +43,7 @@ app.get('/work', function(req, res){
 })
 
 app.post('/work', function(req, res){
-    let item = req.body.newItem
-    workItems.push(item)
-    res.redirect('/work')
+    
 })
 
 app.listen(3000, function(){
