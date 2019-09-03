@@ -1,3 +1,3 @@
-# [DEMO](https://joneshshrestha.github.io/LearningWebDev/Dice%20Game/)
+# [DEMO](https://joneshshrestha.github.io/web-development/Dice%20Game/)
 
 Dice Game with JavaScript
