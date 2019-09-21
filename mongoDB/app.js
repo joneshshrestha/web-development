@@ -21,14 +21,48 @@ const fruit = new Fruit({
 
 // fruit.save();
 
-const findDocuments = function(db, callback) {
-  // Get the documents collection
-  const collection = db.collection("fruits");
-  // Find some documents
-  collection.find({}).toArray(function(err, fruits) {
-    assert.equal(err, null);
-    console.log("Found the following records");
+const personSchema = new mongoose.Schema({
+  name: String,
+  age: Number
+});
+
+const Person = mongoose.model("Person", personSchema);
+
+const person = new Person({
+  name: "John",
+  age: 37
+});
+
+const kiwi = new Fruit({
+  name: "Kiwi",
+  rating: 10,
+  review: "The best fruit"
+});
+const banana = new Fruit({
+  name: "Banana",
+  rating: 8,
+  review: "Smooth fruit"
+});
+const oranges = new Fruit({
+  name: "Oranges",
+  rating: 8,
+  review: "Very sour"
+});
+
+// Fruit.insertMany([kiwi, oranges, banana], function(err) {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Successfully saved all fruits to fruitsDB");
+//   }
+// });
+
+// person.save();
+
+Fruit.find(function(err, fruits) {
+  if (err) {
+    console.log(err);
+  } else {
     console.log(fruits);
-    callback(fruits);
-  });
-};
+  }
+});
