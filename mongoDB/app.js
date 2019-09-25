@@ -59,6 +59,14 @@ const person = new Person({
   age: 37
 });
 
+Person.deleteMany({ name: "John" }, function(err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Deleted all John data from database!");
+  }
+});
+
 // const kiwi = new Fruit({
 //   name: "Kiwi",
 //   rating: 10,
@@ -83,7 +91,7 @@ const person = new Person({
 // //   }
 // // });
 
-// // person.save();
+// person.save();
 
 Fruit.find(function(err, fruits) {
   if (err) {
