@@ -27,17 +27,25 @@ const fruit = new Fruit({
 
 // fruit.save();
 
-Fruit.updateOne(
-  { _id: "5d8b761c8d04ac0b0057a3f0" },
-  { name: "Peach" },
-  function(err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Successfully updated the database.");
-    }
+// Fruit.updateOne(
+//   { _id: "5d8b761c8d04ac0b0057a3f0" },
+//   { name: "Peach" },
+//   function(err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("Successfully updated the database.");
+//     }
+//   }
+// );
+
+Fruit.deleteOne({ _id: "5d8b761c8d04ac0b0057a3f0" }, function(err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Successfully deleted the data");
   }
-);
+});
 
 const personSchema = new mongoose.Schema({
   name: String,
