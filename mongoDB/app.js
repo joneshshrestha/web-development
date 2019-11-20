@@ -54,10 +54,19 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model("Person", personSchema);
 
-const person = new Person({
-  name: "John",
-  age: 37
+const pineapple = new Fruit({
+  name: "Pineapple",
+  score: 9,
+  review: "Good fruit"
 });
+
+const person = new Person({
+  name: "Amy",
+  age: 12,
+  favoriteFruit: pineapple
+});
+
+pineapple.save();
 
 Person.deleteMany({ name: "John" }, function(err) {
   if (err) {
@@ -91,7 +100,7 @@ Person.deleteMany({ name: "John" }, function(err) {
 // //   }
 // // });
 
-// person.save();
+person.save();
 
 Fruit.find(function(err, fruits) {
   if (err) {
