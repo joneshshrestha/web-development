@@ -32,3 +32,18 @@ document.querySelector('.weather-group').addEventListener('click', (e) => {
     document.querySelector('p#weather').innerHTML = celsiusText
   }
 })
+
+setInterval(() => {
+  document.querySelector('span[data-time=hours]').textContent = new Date()
+    .getHours()
+    .toString()
+    .padStart(2, '0')
+  document.querySelector('span[data-time=minutes]').textContent = new Date()
+    .getMinutes()
+    .toString()
+    .padStart(2, '0')
+  document.querySelector('span[data-time=seconds]').textContent = new Date()
+    .getSeconds()
+    .toString()
+    .padStart(2, '0')
+}, 1000)
