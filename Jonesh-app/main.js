@@ -47,3 +47,34 @@ setInterval(() => {
     .toString()
     .padStart(2, '0')
 }, 1000)
+
+const galleryImage = [
+  { src: './assets/gallery/image1.jpg', alt: 'Thumbnail Image 1' },
+  { src: './assets/gallery/image2.jpg', alt: 'Thumbnail Image 2' },
+  { src: './assets/gallery/image3.jpg', alt: 'Thumbnail Image 3' },
+]
+
+const mainImage = document.querySelector('#gallery > img')
+let clickedThumbnail
+mainImage.src = galleryImage[0].src
+mainImage.alt = galleryImage[0].alt
+
+const thumbnail = document.querySelector('.thumbnails')
+
+thumbnail.addEventListener('click', (e) => {
+  clickedThumbnail = e.target.alt
+  return clickedThumbnail
+})
+
+galleryImage.forEach((e, i) => {
+  let thumb = document.createElement('img')
+  thumb.src = e.src
+  thumb.alt = e.alt
+  thumb.dataset.arrayIndex = i
+  thumb.dataset.selected = i === 0 ? true : false
+  thumbnail.appendChild(thumb)
+  thumb.addEventListener('click', (e) => {
+    mainImage.src = galleryImage[e.target.dataset.arrayIndex].src
+    mainImage.alt = galleryImage[e.target.dataset.arrayIndex].alt
+  })
+})
