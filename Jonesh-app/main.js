@@ -12,7 +12,18 @@ const celsiusToFar = (temperature) => {
   return (temperature * 9) / 5 + 32
 }
 
-const greetingText = 'Good afternoon!'
+let currentHour = new Date().getHours()
+let greetingText
+if (currentHour < 12) {
+  greetingText = 'Good Morning!'
+} else if (currentHour < 19) {
+  greetingText = 'Good Afternoon!'
+} else if (currentHour < 24) {
+  greetingText = 'Good Evening!'
+} else {
+  greetingText = 'Error!'
+}
+
 const weatherCondition = 'Sunny'
 const userLocation = 'Rio De Janeiro'
 let temperature = 25
