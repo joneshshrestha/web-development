@@ -74,7 +74,12 @@ galleryImage.forEach((e, i) => {
   thumb.dataset.selected = i === 0 ? true : false
   thumbnail.appendChild(thumb)
   thumb.addEventListener('click', (e) => {
-    mainImage.src = galleryImage[e.target.dataset.arrayIndex].src
-    mainImage.alt = galleryImage[e.target.dataset.arrayIndex].alt
+    let selectedIndex = e.target.dataset.arrayIndex
+    mainImage.src = galleryImage[selectedIndex].src
+    mainImage.alt = galleryImage[selectedIndex].alt
+    thumbnail.querySelectorAll('img').forEach((e, i) => {
+      e.dataset.selected = false
+    })
+    e.target.dataset.selected = true
   })
 })
