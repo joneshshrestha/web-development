@@ -149,11 +149,13 @@ const galleryHandler = () => {
 /* 
 <div class="product-item">
   <img src="./assets/products/img6.png" alt="AstroFiction" />
-  <h3 class="product-title">AstroFiction</h3>
-  <p class="product-author">John Doe</p>
-  <p class="price-title">Price</p>
-  <p class="product-price">$ 49.90</p>
-</div> 
+  <div class="product-details">
+    <h3 class="product-title">AstroFiction</h3>
+    <p class="product-author">John Doe</p>
+    <p class="price-title">Price</p>
+    <p class="product-price">$ 49.90</p>
+  </div>
+</div>
 */
 
 const productHandler = () => {
@@ -167,7 +169,31 @@ const productHandler = () => {
     productImage.src = product.image
     productImage.alt = 'Image for ' + product.title
 
+    let productDetails = document.createElement('div')
+    productDetails.classList.add('product-details')
+
+    let productTitle = document.createElement('h3')
+    productTitle.classList.add('product-title')
+    productTitle.textContent = product.title
+
+    let productAuthor = document.createElement('p')
+    productAuthor.classList.add('product-author')
+    productAuthor.textContent = product.author
+
+    let priceTitle = document.createElement('p')
+    priceTitle.classList.add('price-title')
+    priceTitle.textContent = 'Price'
+
+    let productPrice = document.createElement('p')
+    productPrice.classList.add('product-price')
+    productPrice.textContent = product.price > 0 ? '$' + product.price : 'Free'
+
     productItem.append(productImage)
+    productItem.append(productDetails)
+    productDetails.append(productTitle)
+    productDetails.append(productAuthor)
+    productDetails.append(priceTitle)
+    productDetails.append(productPrice)
     productArea.append(productItem)
   })
 }
