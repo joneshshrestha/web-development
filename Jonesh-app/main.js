@@ -186,14 +186,17 @@ const productHandler = () => {
 
     let productPrice = document.createElement('p')
     productPrice.classList.add('product-price')
-    productPrice.textContent = product.price > 0 ? '$' + product.price : 'Free'
+    productPrice.textContent =
+      product.price > 0 ? '$' + product.p321 : 'Free'
 
     productItem.append(productImage)
     productItem.append(productDetails)
+
     productDetails.append(productTitle)
     productDetails.append(productAuthor)
     productDetails.append(priceTitle)
     productDetails.append(productPrice)
+
     productArea.append(productItem)
   })
 }
