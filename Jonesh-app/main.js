@@ -6,6 +6,45 @@ const galleryImage = [
   { src: './assets/gallery/image3.jpg', alt: 'Thumbnail Image 3' },
 ]
 
+const products = [
+  {
+    title: 'AstroFiction',
+    author: 'John Doe',
+    price: 49.9,
+    image: './assets/products/img6.png',
+  },
+  {
+    title: 'Space Odissey',
+    author: 'Marie Anne',
+    price: 35,
+    image: './assets/products/img1.png',
+  },
+  {
+    title: 'Doomed City',
+    author: 'Jason Cobert',
+    price: 0,
+    image: './assets/products/img2.png',
+  },
+  {
+    title: 'Black Dog',
+    author: 'John Doe',
+    price: 85.35,
+    image: './assets/products/img3.png',
+  },
+  {
+    title: 'My Little Robot',
+    author: 'Pedro Paulo',
+    price: 0,
+    image: './assets/products/img5.png',
+  },
+  {
+    title: 'Garden Girl',
+    author: 'Ankit Patel',
+    price: 45,
+    image: './assets/products/img4.png',
+  },
+]
+
 const menuHandler = () => {
   document.querySelector('#open-nav-menu').addEventListener('click', () => {
     document.querySelector('header nav .wrapper').classList.add('nav-open')
@@ -107,17 +146,33 @@ const galleryHandler = () => {
   })
 }
 
-{/* <div class="product-item">
-<img src="./assets/products/img6.png" alt="AstroFiction" />
-            <div class="product-details">
-              <h3 class="product-title">AstroFiction</h3>
-              <p class="product-author">John Doe</p>
-              <p class="price-title">Price</p>
-              <p class="product-price">$ 49.90</p>
-            </div> */}
+/* 
+<div class="product-item">
+  <img src="./assets/products/img6.png" alt="AstroFiction" />
+  <h3 class="product-title">AstroFiction</h3>
+  <p class="product-author">John Doe</p>
+  <p class="price-title">Price</p>
+  <p class="product-price">$ 49.90</p>
+</div> 
+*/
 
+const productHandler = () => {
+  let productArea = document.querySelector('product-area')
+
+  products.forEach((product, index) => {
+    let productItem = productArea.createElement('div')
+    productItem.classList.add('product-item')
+
+    let productImage = productItem.createElement('img')
+    productImage.src = products.image
+    productImage.alt = 'Image for ' + products.title
+    
+    let productTitle
+  })
+}
 
 menuHandler()
 greetingHandler()
 clockHandler()
 galleryHandler()
+productHandler()
