@@ -157,17 +157,18 @@ const galleryHandler = () => {
 */
 
 const productHandler = () => {
-  let productArea = document.querySelector('product-area')
+  let productArea = document.querySelector('.products-area')
 
   products.forEach((product, index) => {
-    let productItem = productArea.createElement('div')
+    let productItem = document.createElement('div')
     productItem.classList.add('product-item')
 
-    let productImage = productItem.createElement('img')
-    productImage.src = products.image
-    productImage.alt = 'Image for ' + products.title
-    
-    let productTitle
+    let productImage = document.createElement('img')
+    productImage.src = product.image
+    productImage.alt = 'Image for ' + product.title
+
+    productItem.append(productImage)
+    productArea.append(productItem)
   })
 }
 
