@@ -161,6 +161,14 @@ const galleryHandler = () => {
 const productHandler = () => {
   let productArea = document.querySelector('.products-area')
 
+  let freeProducts = products.filter((product) => {
+    return product.price <= 0
+  })
+
+  let paidProducts = products.filter((product) => {
+    return product.price > 0
+  })
+
   products.forEach((product, index) => {
     let productItem = document.createElement('div')
     productItem.classList.add('product-item')
@@ -186,8 +194,7 @@ const productHandler = () => {
 
     let productPrice = document.createElement('p')
     productPrice.classList.add('product-price')
-    productPrice.textContent =
-      product.price > 0 ? '$' + product.p321 : 'Free'
+    productPrice.textContent = product.price > 0 ? '$' + product.price : 'Free'
 
     productItem.append(productImage)
     productItem.append(productDetails)
@@ -199,6 +206,25 @@ const productHandler = () => {
 
     productArea.append(productItem)
   })
+
+  document.querySelector('.products-filter label[for=free').addEventListener('click', () => {
+
+  })
+
+
+  let totalProducts = products.length
+  document.querySelector(
+    '.products-filter label[for=all] span.product-amount'
+  ).textContent = totalProducts
+
+  document.querySelector(
+    '.products-filter label[for=free] span.product-amount'
+  ).textContent = freeProducts.length
+
+  document.querySelector(
+    '.products-filter label[for=paid] span.product-amount'
+  ).textContent = paidProducts.length
+
 }
 
 menuHandler()
