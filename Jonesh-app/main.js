@@ -162,7 +162,7 @@ const productHandler = () => {
   let productArea = document.querySelector('.products-area')
 
   let freeProducts = products.filter((product) => {
-    return product.price <= 0
+    return !product.price || product.price <= 0
   })
 
   let paidProducts = products.filter((product) => {
@@ -207,15 +207,13 @@ const productHandler = () => {
     productArea.append(productItem)
   })
 
-  document.querySelector('.products-filter label[for=free').addEventListener('click', () => {
+  document
+    .querySelector('.products-filter label[for=free')
+    .addEventListener('click', () => {})
 
-  })
-
-
-  let totalProducts = products.length
   document.querySelector(
     '.products-filter label[for=all] span.product-amount'
-  ).textContent = totalProducts
+  ).textContent = products.length
 
   document.querySelector(
     '.products-filter label[for=free] span.product-amount'
@@ -224,7 +222,6 @@ const productHandler = () => {
   document.querySelector(
     '.products-filter label[for=paid] span.product-amount'
   ).textContent = paidProducts.length
-
 }
 
 menuHandler()
