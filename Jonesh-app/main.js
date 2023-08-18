@@ -160,6 +160,7 @@ const galleryHandler = () => {
 
 const populateProducts = (productList) => {
   let productArea = document.querySelector('.products-area')
+  productArea.textContent = ''
   productList.forEach((product, index) => {
     let productItem = document.createElement('div')
     productItem.classList.add('product-item')
@@ -209,16 +210,12 @@ const productHandler = () => {
   })
 
   document.querySelector('.products-filter').addEventListener('click', (e) => {
-    console.log(e.target.id)
-    if ((e.target.id = 'all')) {
-      
+    if (e.target.id === 'all') {
       populateProducts(products)
-    } else if ((e.target.id = 'paid')) {
+    } else if (e.target.id === 'paid') {
       populateProducts(paidProducts)
-    } else if ((e.target.id = 'free')) {
+    } else if (e.target.id === 'free') {
       populateProducts(freeProducts)
-    } else {
-      console.log('error!')
     }
   })
 
