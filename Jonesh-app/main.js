@@ -158,18 +158,9 @@ const galleryHandler = () => {
 </div>
 */
 
-const productHandler = () => {
+const populateProducts = (productList) => {
   let productArea = document.querySelector('.products-area')
-
-  let freeProducts = products.filter((product) => {
-    return !product.price || product.price <= 0
-  })
-
-  let paidProducts = products.filter((product) => {
-    return product.price > 0
-  })
-
-  products.forEach((product, index) => {
+  productList.forEach((product, index) => {
     let productItem = document.createElement('div')
     productItem.classList.add('product-item')
 
@@ -206,10 +197,32 @@ const productHandler = () => {
 
     productArea.append(productItem)
   })
+}
 
-  document
-    .querySelector('.products-filter label[for=free')
-    .addEventListener('click', () => {})
+const productHandler = () => {
+  let freeProducts = products.filter((product) => {
+    return !product.price || product.price <= 0
+  })
+
+  let paidProducts = products.filter((product) => {
+    return product.price > 0
+  })
+
+  document.querySelector('.products-filter').addEventListener('click', (e) => {
+    console.log(e.target.id)
+    if ((e.target.id = 'all')) {
+      
+      populateProducts(products)
+    } else if ((e.target.id = 'paid')) {
+      populateProducts(paidProducts)
+    } else if ((e.target.id = 'free')) {
+      populateProducts(freeProducts)
+    } else {
+      console.log('error!')
+    }
+  })
+
+  populateProducts(products)
 
   document.querySelector(
     '.products-filter label[for=all] span.product-amount'
