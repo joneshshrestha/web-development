@@ -234,8 +234,16 @@ const productHandler = () => {
   ).textContent = paidProducts.length
 }
 
+const footerHandler = () => {
+  let year = new Date().getFullYear()
+  document.querySelector(
+    'footer'
+  ).textContent = `© ${year} - All rights reserved`
+}
+
 menuHandler()
 greetingHandler()
 clockHandler()
 galleryHandler()
 productHandler()
+footerHandler()
