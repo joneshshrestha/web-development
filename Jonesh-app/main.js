@@ -1,5 +1,8 @@
 // Menu Section
 
+const weatherAPIKey = 'adc0dd05f5959990b23c5a9f3ac09dab'
+const weatherAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API Key}`
+
 const galleryImage = [
   { src: './assets/gallery/image1.jpg', alt: 'Thumbnail Image 1' },
   { src: './assets/gallery/image2.jpg', alt: 'Thumbnail Image 2' },
@@ -230,7 +233,15 @@ const footerHandler = () => {
 }
 
 navigator.geolocation.getCurrentPosition((position) => {
-  
+  let latitude = position.coords.latitude
+  let longitude = position.coords.longitude
+  let url = weatherAPIUrl
+    .replace('{lat}', latitude)
+    .replace('{lon}', longitude)
+    .replace('{API Key}', weatherAPIKey)
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
 })
 
 menuHandler()
