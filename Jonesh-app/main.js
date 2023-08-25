@@ -100,6 +100,8 @@ const weatherHandler = () => {
         ).toFixed(1)}°C outside`
         let celsiusText = `The weather is ${condition} in ${location} and it's ${temperature}°C outside`
 
+        document.querySelector('p#weather').innerHTML = celsiusText
+
         document
           .querySelector('.weather-group')
           .addEventListener('click', (e) => {
