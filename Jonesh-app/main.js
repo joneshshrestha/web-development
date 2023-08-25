@@ -1,7 +1,7 @@
 // Menu Section
 
 const weatherAPIKey = 'adc0dd05f5959990b23c5a9f3ac09dab'
-const weatherAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API Key}`
+const weatherAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API Key}&units=metric`
 
 const galleryImage = [
   { src: './assets/gallery/image1.jpg', alt: 'Thumbnail Image 1' },
@@ -77,23 +77,7 @@ const greetingHandler = () => {
     greetingText = 'Error!'
   }
 
-  const weatherCondition = 'Sunny'
-  const userLocation = 'Rio De Janeiro'
-  let temperature = 25
-  let fahrText = `The weather is ${weatherCondition} in ${userLocation} and it's ${celsiusToFar(
-    temperature
-  ).toFixed(1)}°C outside`
-  let celsiusText = `The weather is ${weatherCondition} in ${userLocation} and it's ${temperature}°C outside`
-
   document.querySelector('#greeting').innerHTML = greetingText
-
-  document.querySelector('.weather-group').addEventListener('click', (e) => {
-    if (e.target.id == 'fahr') {
-      document.querySelector('p#weather').innerHTML = fahrText
-    } else {
-      document.querySelector('p#weather').innerHTML = celsiusText
-    }
-  })
 }
 
 // Local Time Section
@@ -232,6 +216,8 @@ const footerHandler = () => {
   ).textContent = `© ${year} - All rights reserved`
 }
 
+
+
 navigator.geolocation.getCurrentPosition((position) => {
   let latitude = position.coords.latitude
   let longitude = position.coords.longitude
@@ -241,7 +227,26 @@ navigator.geolocation.getCurrentPosition((position) => {
     .replace('{API Key}', weatherAPIKey)
   fetch(url)
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      let condition = data.weather.main
+      let location = data.name
+      let temperature = data.main.temp
+
+      let fahrText = `The weather is ${condition} in ${location} and it's ${celsiusToFar(
+        temperature
+      ).toFixed(1)}°C outside`
+      let celsiusText = `The weather is ${condition} in ${location} and it's ${temperature}°C outside`
+
+      document
+        .querySelector('.weather-group')
+        .addEventListener('click', (e) => {
+          if (e.target.id == 'fahr') {
+            document.querySelector('p#weather').innerHTML = fahrText
+          } else {
+            document.querySelector('p#weather').innerHTML = celsiusText
+          }
+        })
+    })
 })
 
 menuHandler()
