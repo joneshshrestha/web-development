@@ -80,6 +80,39 @@ const greetingHandler = () => {
   document.querySelector('#greeting').innerHTML = greetingText
 }
 
+const weatherHandler = () => {
+  navigator.geolocation.getCurrentPosition((position) => {
+    let latitude = position.coords.latitude
+    let longitude = position.coords.longitude
+    let url = weatherAPIUrl
+      .replace('{lat}', latitude)
+      .replace('{lon}', longitude)
+      .replace('{API Key}', weatherAPIKey)
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        let condition = data.weather[0].description
+        let location = data.name
+        let temperature = data.main.temp
+
+        let fahrText = `The weather is ${condition} in ${location} and it's ${celsiusToFar(
+          temperature
+        ).toFixed(1)}°C outside`
+        let celsiusText = `The weather is ${condition} in ${location} and it's ${temperature}°C outside`
+
+        document
+          .querySelector('.weather-group')
+          .addEventListener('click', (e) => {
+            if (e.target.id == 'fahr') {
+              document.querySelector('p#weather').innerHTML = fahrText
+            } else {
+              document.querySelector('p#weather').innerHTML = celsiusText
+            }
+          })
+      })
+  })
+}
+
 // Local Time Section
 
 const clockHandler = () => {
@@ -216,41 +249,9 @@ const footerHandler = () => {
   ).textContent = `© ${year} - All rights reserved`
 }
 
-
-
-navigator.geolocation.getCurrentPosition((position) => {
-  let latitude = position.coords.latitude
-  let longitude = position.coords.longitude
-  let url = weatherAPIUrl
-    .replace('{lat}', latitude)
-    .replace('{lon}', longitude)
-    .replace('{API Key}', weatherAPIKey)
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      let condition = data.weather.main
-      let location = data.name
-      let temperature = data.main.temp
-
-      let fahrText = `The weather is ${condition} in ${location} and it's ${celsiusToFar(
-        temperature
-      ).toFixed(1)}°C outside`
-      let celsiusText = `The weather is ${condition} in ${location} and it's ${temperature}°C outside`
-
-      document
-        .querySelector('.weather-group')
-        .addEventListener('click', (e) => {
-          if (e.target.id == 'fahr') {
-            document.querySelector('p#weather').innerHTML = fahrText
-          } else {
-            document.querySelector('p#weather').innerHTML = celsiusText
-          }
-        })
-    })
-})
-
 menuHandler()
 greetingHandler()
+weatherHandler()
 clockHandler()
 galleryHandler()
 productHandler()
