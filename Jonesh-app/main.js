@@ -112,6 +112,10 @@ const weatherHandler = () => {
             }
           })
       })
+      .catch((err) => {
+        document.querySelector('p#weather').innerHTML =
+          'Unable to get the weather info. Try again later.'
+      })
   })
 }
 
